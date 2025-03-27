@@ -19,6 +19,7 @@ def main():
         screen.fill("black")#here screen is object to the pygame.display.set_mode()
                             # and we are using fill method to put black color on the screen
         pygame.display.flip()#update full display surface to the screen
-        dt = (clock.tick(60))/1000
+        dt = (clock.tick(60))/1000# calling the .tick(method) dividign its output by 1000 to convert is to seconds
+                                #and passing that output to dt variable
 if __name__ == "__main__":
     main()
