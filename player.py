@@ -2,7 +2,7 @@ import pygame
 from CircleShape import*
 from constants import*
 class Player(CircleShape):
-    def __init__(self, x, y):#constructor taking input of x and y integer
+    def __init__(self, x, y,):#constructor taking input of x and y integer
         super().__init__(x, y, PLAYER_RADIUS)# calling the parent class constructor
         self.rotation = 0
 
