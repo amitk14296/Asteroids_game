@@ -6,6 +6,7 @@ class Player(CircleShape):
     def __init__(self, x, y,):#constructor taking input of x and y integer
         super().__init__(x, y, PLAYER_RADIUS)# calling the parent class constructor
         self.rotation = 0
+        self.shoot_cooldown = 0  # Track time since last shot
 
     # in the player class
     def triangle(self):
@@ -25,6 +26,10 @@ class Player(CircleShape):
 
     def update(self, dt):
         keys = pygame.key.get_pressed()
+        
+        # Update cooldown timer
+        if self.shoot_cooldown > 0:
+            self.shoot_cooldown -= dt
 
         if keys[pygame.K_a]:
             return self.rotate(-dt)
@@ -34,7 +39,8 @@ class Player(CircleShape):
             return self.move(-dt)
         if keys[pygame.K_s]:
             return self.move(dt)
-        if keys[pygame.K_SPACE]:
+        if keys[pygame.K_SPACE] and self.shoot_cooldown <= 0:
+            self.shoot_cooldown = PLAYER_SHOOT_COOLDOWN  # Reset cooldown
             return self.shoot(dt)
         
     def move(self, dt):
