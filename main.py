@@ -2,6 +2,7 @@
 # the open-source pygame library
 # throughout this file
 import pygame
+import sys
 from constants import*
 from player import*
 from asteroidfield import*
@@ -32,6 +33,11 @@ def main():
                             # and we are using fill method to put black color on the screen
         for d in drawable:
             d.draw(screen)#player has to be drawn before updating display surface to screen and after background color
+        for ast in asteroid:
+            if player.collision(ast):
+                print("Game over!")
+                sys.exit()
+                
         updatable.update(dt)
         pygame.display.flip()#update full display surface to the screen
         dt = (clock.tick(60))/1000# calling the .tick(method) dividign its output by 1000 to convert is to seconds
